@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">HotDogAdmin</string>
+    <string name="_title_text">Willkommen bei Hotdog 2.0 Administrator!</string>
+    <string name="inventur">Inventur</string>
+    <string name="bestellungen_ansehen">Bestellungen ansehen</string>
+    <string name="preise_festlegen">Preise festlegen</string>
+    <string name="choose_ingredients">Bitte legen Sie die Preise für die Zutaten fest</string>
+    <string name="category_hotdog">Hotdog (Wurst + Brot)</string>
+    <string name="category_bbq_sauce">BBQ-Sauce</string>
+    <string name="category_ketchup">Ketchup</string>
+    <string name="category_mayonnaise">Mayonnaise</string>
+    <string name="category_curry">Curry</string>
+    <string name="category_onion">Zwiebeln</string>
+    <string name="category_cheese">Käse</string>
+    <string name="order_button_text" >Preise aktualisieren</string>
+    <string name="update_pricing">Update Pricing</string>
+</resources>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/_title_text"
+            android:textAppearance="?android:textAppearanceMedium"/>
+
+        <ProgressBar
+            android:layout_marginLeft="104dp"
+            android:layout_gravity="end"
+            android:id="@+id/loadingProgressBar"
+            android:layout_width="28dp"
+            android:layout_height="28dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/choose_ingredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingTop="16dp"
+            android:text="@string/choose_ingredients"
+            android:textAppearance="?android:textAppearanceSmall"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_overview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:paddingTop="32dp"
+            style="@style/CategoryStyle"
+            android:text="@string/category_hotdog"/>
+        <EditText
+            android:id="@+id/hotdog_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="z.B. 3,00 €"
+            android:fontFamily="sans-serif"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
+
+    </LinearLayout>
+
+    <!-- Overview category -->
+    <LinearLayout
+        android:id="@+id/container_bbq_sauce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_bbq_sauce"/>
+         <EditText
+            android:id="@+id/bbq_sauce_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+             android:hint="z.B. 0,50 €"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/container_ketchup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_ketchup"/>
+        <EditText
+            android:id="@+id/ketchup_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:hint="z.B. 0,50 €"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
+
+    </LinearLayout>
+    <!-- Overview category -->
+    <LinearLayout
+        android:id="@+id/container_mayonnaise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_mayonnaise"/>
+
+        <EditText
+            android:id="@+id/mayonnaise_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:hint="z.B. 0,50 €"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
+
+    </LinearLayout>
+    <!-- Overview category -->
+    <LinearLayout
+        android:id="@+id/container_curry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_curry"/>
+        <EditText
+            android:id="@+id/curry_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:hint="z.B. 0,50 €"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
+
+    </LinearLayout>
+    <!-- Overview category -->
+    <LinearLayout
+        android:id="@+id/container_onion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_onion"/>
+        <EditText
+            android:id="@+id/onion_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:hint="z.B. 0,50 €"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
+
+    </LinearLayout>
+    <!-- Overview category -->
+    <LinearLayout
+        android:id="@+id/container_cheese"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp">
+
+        <!-- Label -->
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_cheese"/>
+        <EditText
+            android:id="@+id/cheese_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:hint="z.B. 0,50 €"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/container_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="32dp">
+
+        <!-- Label -->
+        <TextView
+            android:layout_marginStart="0dp"
+            android:layout_gravity="center"
+            android:id="@+id/order_text"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/order_button_text"
+            android:textAppearance="?android:textAppearanceMedium"/>
+
+        <Button
+            android:id="@+id/order"
+            android:layout_marginLeft="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@color/backgroundColdGrey"
+            android:foreground="@drawable/ic_check_circle"/>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
