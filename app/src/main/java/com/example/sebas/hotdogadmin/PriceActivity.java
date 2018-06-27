@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.common.util.concurrent.FutureCallback;
@@ -56,13 +57,13 @@ public class PriceActivity extends Activity {
     private EditText mOnionEditText;
     private EditText mCheeseEditText;
 
-    private double mHotDogPrice;
-    private double mBbqSaucePrice;
-    private double mKetchupPrice;
-    private double mMayonnaisePrice;
-    private double mCurryPrice;
-    private double mOnionPrice;
-    private double mCheesePrice;
+    private TextView mHotDogPrice;
+    private TextView mBbqSaucePrice;
+    private TextView mKetchupPrice;
+    private TextView mMayonnaisePrice;
+    private TextView mCurryPrice;
+    private TextView mOnionPrice;
+    private TextView mCheesePrice;
 
     private Button mUpdate;
     private Button mUpdatePricesButton;
@@ -117,26 +118,18 @@ public class PriceActivity extends Activity {
         mCheeseEditText = (EditText) findViewById(R.id.cheese_price);
         mUpdatePricesButton = (Button) findViewById(R.id.order);
 
-        try {
-
-            PriceItem result = mPriceTable
-                    .lookUp("7b9845b1-c0c2-4a97-878b-d7178af5ea6d")
-                    .get();
-
-            /*mHotDogEditText.setHint(String.valueOf(result.getHotDog()));
-            mBbqSauceEditText.setText(String.valueOf(result.getBbqSauce()));
-            mKetchupEditText.setText(String.valueOf(result.getKetchup()));
-            mMayonnaiseEditText.setText(String.valueOf(result.getMayonnaise()));
-            mCurryEditText.setText(String.valueOf(result.getCurry()));
-            mOnionEditText.setText(String.valueOf(result.getOnion()));
-            mCheeseEditText.setText(String.valueOf(result.getCheese()));*/
+        mHotDogPrice = (TextView) findViewById(R.id.current_hotdog_price);
+        mBbqSaucePrice = (TextView) findViewById(R.id.current_bbq_price);
+        mKetchupPrice = (TextView) findViewById(R.id.current_ketchup_price);
+        mMayonnaisePrice = (TextView) findViewById(R.id.current_mayonnaise_price);
+        mCurryPrice = (TextView) findViewById(R.id.current_curry_price);
+        mOnionPrice = (TextView) findViewById(R.id.current_onion_price);
+        mCheesePrice = (TextView) findViewById(R.id.current_cheese_price);
 
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        refreshItemsFromTable();
+
+
 
 
 
@@ -185,6 +178,62 @@ public class PriceActivity extends Activity {
             }
         });
 
+    }
+
+    private void refreshItemsFromTable() {
+
+        // Get the items that weren't marked as completed and add them in the
+        // adapter
+
+        @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
+            @Override
+            protected Void doInBackground(Void... params) {
+
+                try {
+
+                    PriceItem result = mPriceTable
+                            .lookUp("7b9845b1-c0c2-4a97-878b-d7178af5ea6d")
+
+                            .get();
+
+                    runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            mHotDogPrice.setHint(String.format("%.2f",result.getHotDog()) + " €");
+                            mBbqSaucePrice.setHint(String.format("%.2f",result.getBbqSauce())+ " €");
+                            mKetchupPrice.setHint(String.format("%.2f",result.getKetchup())+ " €");
+                            mMayonnaisePrice.setHint(String.format("%.2f",result.getMayonnaise())+ " €");
+                            mCurryPrice.setHint(String.format("%.2f",result.getCurry())+ " €");
+                            mOnionPrice.setHint(String.format("%.2f",result.getOnion())+ " €");
+                            mCheesePrice.setHint(String.format("%.2f",result.getCheese())+ " €");
+                        }
+                    });
+                } catch (Exception exception) {
+                    createAndShowDialog(exception, "Error");
+                }
+                return null;
+            }
+        };
+
+        runAsyncTask(task);
+    }
+
+    private void createAndShowDialogFromTask(final Exception exception, String title) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                createAndShowDialog(exception, "Error");
+            }
+        });
+    }
+
+    private AsyncTask<Void, Void, Void> runAsyncTask(AsyncTask<Void, Void, Void> task) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            return task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        } else {
+            return task.execute();
+        }
     }
 
     private void createAndShowDialog(final String message, final String title) {

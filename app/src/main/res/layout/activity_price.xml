@@ -51,13 +51,22 @@
         <!-- Label -->
         <TextView
             android:paddingTop="32dp"
+            android:paddingBottom="4dp"
             style="@style/CategoryStyle"
             android:text="@string/category_hotdog"/>
+        <TextView
+            android:id="@+id/current_hotdog_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="bisher"
+            android:fontFamily="sans-serif"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
         <EditText
             android:id="@+id/hotdog_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="z.B. 3,00 €"
+            android:hint="z.B. 3.00 €"
             android:fontFamily="sans-serif"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
@@ -75,12 +84,20 @@
         <TextView
             style="@style/CategoryStyle"
             android:text="@string/category_bbq_sauce"/>
+        <TextView
+            android:id="@+id/current_bbq_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="bisher"
+            android:fontFamily="sans-serif"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
          <EditText
             android:id="@+id/bbq_sauce_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-             android:hint="z.B. 0,50 €"
+             android:hint="z.B. 0.50 €"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -95,12 +112,21 @@
         <TextView
             style="@style/CategoryStyle"
             android:text="@string/category_ketchup"/>
+
+        <TextView
+            android:id="@+id/current_ketchup_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="bisher"
+            android:fontFamily="sans-serif"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
         <EditText
             android:id="@+id/ketchup_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 0,50 €"
+            android:hint="z.B. 0.50 €"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -116,13 +142,21 @@
         <TextView
             style="@style/CategoryStyle"
             android:text="@string/category_mayonnaise"/>
+        <TextView
+            android:id="@+id/current_mayonnaise_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="bisher"
+            android:fontFamily="sans-serif"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
 
         <EditText
             android:id="@+id/mayonnaise_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 0,50 €"
+            android:hint="z.B. 0.50 €"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -138,12 +172,21 @@
         <TextView
             style="@style/CategoryStyle"
             android:text="@string/category_curry"/>
+
+        <TextView
+            android:id="@+id/current_curry_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="bisher"
+            android:fontFamily="sans-serif"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
         <EditText
             android:id="@+id/curry_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 0,50 €"
+            android:hint="z.B. 0.50 €"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -159,12 +202,21 @@
         <TextView
             style="@style/CategoryStyle"
             android:text="@string/category_onion"/>
+
+        <TextView
+            android:id="@+id/current_onion_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="bisher"
+            android:fontFamily="sans-serif"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
         <EditText
             android:id="@+id/onion_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 0,50 €"
+            android:hint="z.B. 0.50 €"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -181,16 +233,39 @@
         <TextView
             style="@style/CategoryStyle"
             android:text="@string/category_cheese"/>
+
+        <TextView
+            android:id="@+id/current_cheese_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="bisher"
+            android:fontFamily="sans-serif"
+            android:layout_marginRight="16dp"
+            android:textAppearance="?android:textAppearanceSmall"/>
         <EditText
             android:id="@+id/cheese_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 0,50 €"
+            android:hint="z.B. 0.50 €"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp">
+
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_warning"/>
+
+    </LinearLayout>
+
 
     <LinearLayout
 
@@ -198,7 +273,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="32dp">
+        android:paddingTop="0dp">
 
         <!-- Label -->
         <TextView
@@ -215,8 +290,8 @@
         <Button
             android:id="@+id/order"
             android:layout_marginLeft="80dp"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@color/backgroundColdGrey"
             android:foreground="@drawable/ic_check_circle"/>
 
