@@ -67,11 +67,28 @@ public class InventoryActivity extends AppCompatActivity{
     private int mOnionNo;
     private int mCheeseNo;
 
-    private Button mUpdate;
-    private Button mUpdatePricesButton;
-    private boolean mPricesHaveChanged = false;
+    private TextView mHotDogStock;
+    private TextView mBbqSauceStock;
+    private TextView mKetchupStock;
+    private TextView mMayonnaiseStock;
+    private TextView mCurryStock;
+    private TextView mOnionStock;
+    private TextView mCheeseStock;
+
+    private EditText mHotDogAdd;
+    private EditText mBbqSauceAdd;
+    private EditText mKetchupAdd;
+    private EditText mMayonnaiseAdd;
+    private EditText mCurryAdd;
+    private EditText mOnionAdd;
+    private EditText mCheeseAdd;
+
+
+
+    private Button mAdd;
     private MobileServiceClient mClient;
     private MobileServiceTable<HotDogItem> mHotDogTable;
+    private MobileServiceTable<InventoryItem> mInventoryTable;
 
     private ProgressBar mProgressBar;
 
@@ -102,6 +119,7 @@ public class InventoryActivity extends AppCompatActivity{
             // Get the Mobile Service Table instance to use
 
             mHotDogTable = mClient.getTable(HotDogItem.class);
+            mInventoryTable = mClient.getTable(InventoryItem.class);
 
 
         } catch (MalformedURLException e) {
@@ -118,7 +136,71 @@ public class InventoryActivity extends AppCompatActivity{
         mOnionCounter = (TextView) findViewById(R.id.current_onion_no);
         mCheeseCounter = (TextView) findViewById(R.id.current_cheese_no);
 
+        mHotDogStock = (TextView) findViewById(R.id.current_hotdog_stock);
+        mBbqSauceStock = (TextView) findViewById(R.id.current_bbq_stock);
+        mKetchupStock = (TextView) findViewById(R.id.current_ketchup_stock);
+        mMayonnaiseStock = (TextView) findViewById(R.id.current_mayonnaise_stock);
+        mCurryStock = (TextView) findViewById(R.id.current_curry_stock);
+        mOnionStock = (TextView) findViewById(R.id.current_onion_stock);
+        mCheeseStock = (TextView) findViewById(R.id.current_cheese_stock);
+
+        mHotDogAdd = (EditText) findViewById(R.id.hotdog_add);
+        mBbqSauceAdd = (EditText) findViewById(R.id.bbq_sauce_add);
+        mKetchupAdd = (EditText) findViewById(R.id.ketchup_add);
+        mMayonnaiseAdd = (EditText) findViewById(R.id.mayonnaise_add);
+        mCurryAdd = (EditText) findViewById(R.id.curry_add);
+        mOnionAdd = (EditText) findViewById(R.id.onion_add);
+        mCheeseAdd = (EditText) findViewById(R.id.cheese_add);
+
+        mAdd = (Button) findViewById(R.id.add);
+
         refreshItemsFromTable();
+        refreshStocksFromTable();
+
+        mAdd.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                int mHotDogPrice = Integer.parseInt(mHotDogAdd.getText().toString());
+                int mBbqSaucePrice = Integer.parseInt(mBbqSauceAdd.getText().toString());
+                int mKetchupPrice = Integer.parseInt(mKetchupAdd.getText().toString());
+                int mMayonnaisePrice = Integer.parseInt(mMayonnaiseAdd.getText().toString());
+                int mCurryPrice = Integer.parseInt(mCurryAdd.getText().toString());
+                int mOnionPrice = Integer.parseInt(mOnionAdd.getText().toString());
+                int mCheesePrice = Integer.parseInt(mCheeseAdd.getText().toString());
+
+                InventoryItem InvItem = new InventoryItem();
+                InvItem.setHotdogStock(mHotDogPrice);
+                InvItem.setBbqSauceStock(mBbqSaucePrice);
+                InvItem.setKetchupStock(mKetchupPrice);
+                InvItem.setMayonnaiseStock(mMayonnaisePrice);
+                InvItem.setCurryStock(mCurryPrice);
+                InvItem.setOnionStock(mOnionPrice);
+                InvItem.setCheeseStock(mCheesePrice);
+                InvItem.setId("797f796d-5f19-45d1-852c-4142462f9420");
+
+                mInventoryTable.update(InvItem, new TableOperationCallback<InventoryItem>() {
+                    public static final String TAG = "TAG";
+
+                    @Override
+                    public void onCompleted(InventoryItem entity, Exception exception, ServiceFilterResponse response) {
+
+                                                if (exception == null){
+                            Log.i(TAG, "Azure insert succeeded ID: " + entity);
+                        } else {
+                            Log.i(TAG, "Azure insert failed again " + exception);
+                        }
+                    }
+
+
+                });
+                refreshStocksFromTable();
+
+                Toast.makeText(InventoryActivity.this,  "Vorräte wurden aktualisiert",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void refreshItemsFromTable() {
@@ -193,6 +275,41 @@ public class InventoryActivity extends AppCompatActivity{
                             mCurryCounter.setText(String.valueOf(mCurryNo));
                             mOnionCounter.setText(String.valueOf(mOnionNo));
                             mCheeseCounter.setText(String.valueOf(mCheeseNo));
+                        }
+                    });
+                } catch (Exception exception) {
+                    createAndShowDialog(exception, "Error");
+                }
+                return null;
+            }
+        };
+
+        runAsyncTask(task);
+    }
+
+    private void refreshStocksFromTable() {
+        @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
+            @Override
+            protected Void doInBackground(Void... params) {
+
+                try {
+
+                    InventoryItem result = mInventoryTable
+                            .lookUp("797f796d-5f19-45d1-852c-4142462f9420")
+
+                            .get();
+
+                    runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            mHotDogStock.setHint(String.valueOf(result.getHotdogStock()));
+                            mBbqSauceStock.setHint(String.valueOf(result.getBbqStock()));
+                            mKetchupStock.setHint(String.valueOf(result.getKetchupStock()));
+                            mMayonnaiseStock.setHint(String.valueOf(result.getMayonnaiseStock()));
+                            mCurryStock.setHint(String.valueOf(result.getCurryStock()));
+                            mOnionStock.setHint(String.valueOf(result.getOnionStock()));
+                            mCheeseStock.setHint(String.valueOf(result.getCheeseStock()));
                         }
                     });
                 } catch (Exception exception) {
