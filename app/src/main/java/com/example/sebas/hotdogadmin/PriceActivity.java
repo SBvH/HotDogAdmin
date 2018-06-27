@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -27,6 +29,7 @@ import com.microsoft.windowsazure.mobileservices.http.ServiceFilter;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterRequest;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
+import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
 import com.microsoft.windowsazure.mobileservices.table.sync.MobileServiceSyncContext;
 import com.microsoft.windowsazure.mobileservices.table.sync.localstore.ColumnDataType;
 import com.microsoft.windowsazure.mobileservices.table.sync.localstore.MobileServiceLocalStoreException;
@@ -45,62 +48,28 @@ import static com.microsoft.windowsazure.mobileservices.table.query.QueryOperati
 
 public class PriceActivity extends Activity {
 
-
     private EditText mHotDogEditText;
-
     private EditText mBbqSauceEditText;
-
     private EditText mKetchupEditText;
-
     private EditText mMayonnaiseEditText;
-
     private EditText mCurryEditText;
-
     private EditText mOnionEditText;
-
     private EditText mCheeseEditText;
 
+    private double mHotDogPrice;
+    private double mBbqSaucePrice;
+    private double mKetchupPrice;
+    private double mMayonnaisePrice;
+    private double mCurryPrice;
+    private double mOnionPrice;
+    private double mCheesePrice;
+
     private Button mUpdatePricesButton;
-
     private boolean mPricesHaveChanged = false;
-
     private MobileServiceClient mClient;
-
     private MobileServiceTable<PriceItem> mPriceTable;
 
-    //Offline Sync
-    /**
-     * Mobile Service Table used to access and Sync data
-     */
-    //private MobileServiceSyncTable<ToDoItem> mToDoTable;
-
-    /**
-     * Adapter to sync the items list with the view
-     */
-    //private PriceItemAdapter mAdapter;
-
-    /**
-     * EditText containing the "New To Do" text
-     */
-    private EditText mTextNewToDo;
-
-    /**
-     * Progress spinner to use for table operations
-     */
     private ProgressBar mProgressBar;
-
-    /**
-     * OnTouchListener that listens for any user touches on a View, implying that they are modifying
-     * the view, and we change the mPetHasChanged boolean to true.
-     */
-    private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            mPricesHaveChanged = true;
-            return false;
-        }
-    };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,173 +99,71 @@ public class PriceActivity extends Activity {
 
             mPriceTable = mClient.getTable(PriceItem.class);
 
-            // Offline Sync
-            //mPriceTable = mClient.getSyncTable("ToDoItem", PriceItem.class);
-
-            //Init local storage
-            initLocalStore().get();
-
-            // Find all relevant views that we will need to read user input from
-            mHotDogEditText = (EditText) findViewById(R.id.hotdog_price);
-            mBbqSauceEditText = (EditText) findViewById(R.id.bbq_sauce_price);
-            mKetchupEditText = (EditText) findViewById(R.id.ketchup_price);
-            mMayonnaiseEditText = (EditText) findViewById(R.id.mayonnaise_price);
-            mCurryEditText = (EditText) findViewById(R.id.curry_price);
-            mOnionEditText = (EditText) findViewById(R.id.onion_price);
-            mCheeseEditText = (EditText) findViewById(R.id.cheese_price);
-            mUpdatePricesButton = (Button) findViewById(R.id.order);
-
-            // Load the items from the Mobile Service
-            refreshItemsFromTable();
 
         } catch (MalformedURLException e) {
             createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
         } catch (Exception e){
             createAndShowDialog(e, "Error");
         }
-    }
 
-    private void refreshItemsFromTable() {
 
-        // Get the items that weren't marked as completed and add them in the
-        // adapter
+        mHotDogEditText = (EditText) findViewById(R.id.hotdog_price);
+        mBbqSauceEditText = (EditText) findViewById(R.id.bbq_sauce_price);
+        mKetchupEditText = (EditText) findViewById(R.id.ketchup_price);
+        mMayonnaiseEditText = (EditText) findViewById(R.id.mayonnaise_price);
+        mCurryEditText = (EditText) findViewById(R.id.curry_price);
+        mOnionEditText = (EditText) findViewById(R.id.onion_price);
+        mCheeseEditText = (EditText) findViewById(R.id.cheese_price);
+        mUpdatePricesButton = (Button) findViewById(R.id.order);
 
-         @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
+
+
+        mUpdatePricesButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            protected Void doInBackground(Void... params) {
+            public void onClick(View v) {
 
-                try {
-                    final List<PriceItem> results = refreshItemsFromMobileServiceTable();
+                double mHotDogPrice = Double.parseDouble(mHotDogEditText.getText().toString());
+                double mBbqSaucePrice = Double.parseDouble(mBbqSauceEditText.getText().toString());
+                double mKetchupPrice = Double.parseDouble(mKetchupEditText.getText().toString());
+                double mMayonnaisePrice = Double.parseDouble(mMayonnaiseEditText.getText().toString());
+                double mCurryPrice = Double.parseDouble(mCurryEditText.getText().toString());
+                double mOnionPrice = Double.parseDouble(mOnionEditText.getText().toString());
+                double mCheesePrice = Double.parseDouble(mCheeseEditText.getText().toString());
 
-                    //Offline Sync
-                    //final List<ToDoItem> results = refreshItemsFromMobileServiceTableSyncTable();
+                PriceItem priceItem = new PriceItem();
+                priceItem.setHotdog(mHotDogPrice);
+                priceItem.setBbqSauce(mBbqSaucePrice);
+                priceItem.setKetchup(mKetchupPrice);
+                priceItem.setMayonnaise(mMayonnaisePrice);
+                priceItem.setCurry(mCurryPrice);
+                priceItem.setOnion(mOnionPrice);
+                priceItem.setCheese(mCheesePrice);
+                priceItem.setId("7b9845b1-c0c2-4a97-878b-d7178af5ea6d");
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            //mAdapter.clear();
+                mPriceTable.update(priceItem, new TableOperationCallback<PriceItem>() {
+                    public static final String TAG = "TAG";
 
-                            for (PriceItem item : results) {
-                                //mAdapter.add(item);
-                            }
+                    @Override
+                    public void onCompleted(PriceItem entity, Exception exception, ServiceFilterResponse response) {
+                        if (exception == null){
+                            Log.i(TAG, "Azure insert succeeded ID: " + entity);
+                        } else {
+                            Log.i(TAG, "Azure insert failed again " + exception);
                         }
-                    });
-                } catch (final Exception e){
-                    createAndShowDialogFromTask(e, "Error");
-                }
+                    }
+                });
 
-                return null;
-            }
-        };
 
-        runAsyncTask(task);
-    }
-    private List<PriceItem> refreshItemsFromMobileServiceTable() throws ExecutionException, InterruptedException {
-        return mPriceTable.where().field("complete").
-                eq(val(false)).execute().get();
-    }
-    private AsyncTask<Void, Void, Void> initLocalStore() throws MobileServiceLocalStoreException, ExecutionException, InterruptedException {
+                Toast.makeText(PriceActivity.this,  "Preise wurden aktualisiert",
+                        Toast.LENGTH_SHORT).show();
 
-        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                try {
 
-                    MobileServiceSyncContext syncContext = mClient.getSyncContext();
-
-                    if (syncContext.isInitialized())
-                        return null;
-
-                    SQLiteLocalStore localStore = new SQLiteLocalStore(mClient.getContext(), "OfflineStore", null, 1);
-
-                    Map<String, ColumnDataType> tableDefinition = new HashMap<String, ColumnDataType>();
-                    tableDefinition.put("id", ColumnDataType.String);
-                    tableDefinition.put("text", ColumnDataType.String);
-                    tableDefinition.put("complete", ColumnDataType.Boolean);
-
-                    localStore.defineTable("ToDoItem", tableDefinition);
-
-                    SimpleSyncHandler handler = new SimpleSyncHandler();
-
-                    syncContext.initialize(localStore, handler).get();
-
-                } catch (final Exception e) {
-                    createAndShowDialogFromTask(e, "Error");
-                }
-
-                return null;
-            }
-        };
-
-        return runAsyncTask(task);
-    }
-
-    //Offline Sync
-    /**
-     * Sync the current context and the Mobile Service Sync Table
-     * @return
-     */
-    /*
-    private AsyncTask<Void, Void, Void> sync() {
-        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
-            @Override
-            protected Void doInBackground(Void... params) {
-                try {
-                    MobileServiceSyncContext syncContext = mClient.getSyncContext();
-                    syncContext.push().get();
-                    mToDoTable.pull(null).get();
-                } catch (final Exception e) {
-                    createAndShowDialogFromTask(e, "Error");
-                }
-                return null;
-            }
-        };
-        return runAsyncTask(task);
-    }
-    */
-
-    /**
-     * Creates a dialog and shows it
-     *
-     * @param exception
-     *            The exception to show in the dialog
-     * @param title
-     *            The dialog title
-     */
-    private void createAndShowDialogFromTask(final Exception exception, String title) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                createAndShowDialog(exception, "Error");
             }
         });
+
     }
 
-
-    /**
-     * Creates a dialog and shows it
-     *
-     * @param exception
-     *            The exception to show in the dialog
-     * @param title
-     *            The dialog title
-     */
-    private void createAndShowDialog(Exception exception, String title) {
-        Throwable ex = exception;
-        if(exception.getCause() != null){
-            ex = exception.getCause();
-        }
-        createAndShowDialog(ex.getMessage(), title);
-    }
-
-    /**
-     * Creates a dialog and shows it
-     *
-     * @param message
-     *            The dialog message
-     * @param title
-     *            The dialog title
-     */
     private void createAndShowDialog(final String message, final String title) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -305,17 +172,12 @@ public class PriceActivity extends Activity {
         builder.create().show();
     }
 
-    /**
-     * Run an ASync task on the corresponding executor
-     * @param task
-     * @return
-     */
-    private AsyncTask<Void, Void, Void> runAsyncTask(AsyncTask<Void, Void, Void> task) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            return task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        } else {
-            return task.execute();
+    private void createAndShowDialog(Exception exception, String title) {
+        Throwable ex = exception;
+        if(exception.getCause() != null){
+            ex = exception.getCause();
         }
+        createAndShowDialog(ex.getMessage(), title);
     }
 
     private class ProgressFilter implements ServiceFilter {
@@ -359,6 +221,7 @@ public class PriceActivity extends Activity {
             return resultFuture;
         }
     }
+
 
 }
 
