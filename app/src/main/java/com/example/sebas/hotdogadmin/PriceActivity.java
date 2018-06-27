@@ -126,13 +126,7 @@ public class PriceActivity extends Activity {
         mOnionPrice = (TextView) findViewById(R.id.current_onion_price);
         mCheesePrice = (TextView) findViewById(R.id.current_cheese_price);
 
-
         refreshItemsFromTable();
-
-
-
-
-
 
         mUpdatePricesButton.setOnClickListener(new View.OnClickListener() {
 
