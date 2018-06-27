@@ -64,6 +64,7 @@ public class PriceActivity extends Activity {
     private double mOnionPrice;
     private double mCheesePrice;
 
+    private Button mUpdate;
     private Button mUpdatePricesButton;
     private boolean mPricesHaveChanged = false;
     private MobileServiceClient mClient;
@@ -115,6 +116,28 @@ public class PriceActivity extends Activity {
         mOnionEditText = (EditText) findViewById(R.id.onion_price);
         mCheeseEditText = (EditText) findViewById(R.id.cheese_price);
         mUpdatePricesButton = (Button) findViewById(R.id.order);
+
+        try {
+
+            PriceItem result = mPriceTable
+                    .lookUp("7b9845b1-c0c2-4a97-878b-d7178af5ea6d")
+                    .get();
+
+            /*mHotDogEditText.setHint(String.valueOf(result.getHotDog()));
+            mBbqSauceEditText.setText(String.valueOf(result.getBbqSauce()));
+            mKetchupEditText.setText(String.valueOf(result.getKetchup()));
+            mMayonnaiseEditText.setText(String.valueOf(result.getMayonnaise()));
+            mCurryEditText.setText(String.valueOf(result.getCurry()));
+            mOnionEditText.setText(String.valueOf(result.getOnion()));
+            mCheeseEditText.setText(String.valueOf(result.getCheese()));*/
+
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
 
 
 
