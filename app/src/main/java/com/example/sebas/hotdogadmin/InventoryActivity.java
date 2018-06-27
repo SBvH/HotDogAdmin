@@ -303,13 +303,13 @@ public class InventoryActivity extends AppCompatActivity{
 
                         @Override
                         public void run() {
-                            mHotDogStock.setHint(String.valueOf(result.getHotdogStock()));
-                            mBbqSauceStock.setHint(String.valueOf(result.getBbqStock()));
-                            mKetchupStock.setHint(String.valueOf(result.getKetchupStock()));
-                            mMayonnaiseStock.setHint(String.valueOf(result.getMayonnaiseStock()));
-                            mCurryStock.setHint(String.valueOf(result.getCurryStock()));
-                            mOnionStock.setHint(String.valueOf(result.getOnionStock()));
-                            mCheeseStock.setHint(String.valueOf(result.getCheeseStock()));
+                            mHotDogStock.setText(String.valueOf(result.getHotdogStock()));
+                            mBbqSauceStock.setText(String.valueOf(result.getBbqStock()));
+                            mKetchupStock.setText(String.valueOf(result.getKetchupStock()));
+                            mMayonnaiseStock.setText(String.valueOf(result.getMayonnaiseStock()));
+                            mCurryStock.setText(String.valueOf(result.getCurryStock()));
+                            mOnionStock.setText(String.valueOf(result.getOnionStock()));
+                            mCheeseStock.setText(String.valueOf(result.getCheeseStock()));
                         }
                     });
                 } catch (Exception exception) {
