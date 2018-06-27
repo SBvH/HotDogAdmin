@@ -164,6 +164,8 @@ public class PriceActivity extends Activity {
                     }
                 });
 
+                refreshItemsFromTable();
+
 
                 Toast.makeText(PriceActivity.this,  "Preise wurden aktualisiert",
                         Toast.LENGTH_SHORT).show();

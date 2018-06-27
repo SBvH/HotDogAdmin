@@ -66,7 +66,7 @@
             android:id="@+id/hotdog_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="z.B. 3.00 €"
+            android:hint="z.B. 3.00"
             android:fontFamily="sans-serif"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-             android:hint="z.B. 0.50 €"
+             android:hint="z.B. 0.50"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -126,7 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 0.50 €"
+            android:hint="z.B. 0.50"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -156,7 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 0.50 €"
+            android:hint="z.B. 0.50"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -186,7 +186,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 0.50 €"
+            android:hint="z.B. 0.50"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -216,7 +216,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 0.50 €"
+            android:hint="z.B. 0.50"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -247,7 +247,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 0.50 €"
+            android:hint="z.B. 0.50"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
