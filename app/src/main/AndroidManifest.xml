@@ -22,6 +22,11 @@
             android:theme="@style/EditorTheme"
             android:parentActivityName=".MainActivity" >
         </activity>
+        <activity
+            android:name=".InventoryActivity"
+            android:theme="@style/EditorTheme"
+            android:parentActivityName=".MainActivity" >
+        </activity>
     </application>
 
 </manifest>

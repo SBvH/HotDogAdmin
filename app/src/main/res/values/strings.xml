@@ -15,4 +15,5 @@
     <string name="order_button_text" >Preise aktualisieren</string>
     <string name="update_pricing">Update Pricing</string>
     <string name="category_warning">WICHTIG: Vor dem Aktualisieren der Preise sind alle Eingabefelder auszufüllen!</string>
+    <string name="category_hotdog_solo">Hotdog</string>
 </resources>

@@ -21,12 +21,12 @@ public class MainActivity extends AppCompatActivity {
         mOrderButton = (Button) findViewById(R.id.order);
         mPricesButton = (Button) findViewById(R.id.pricing);
 
-        /* mInventoryButton.setOnClickListener(view -> {
+         mInventoryButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, InventoryActivity.class);
             startActivity(intent);
         });
 
-        mOrderButton.setOnClickListener(view -> {
+        /*mOrderButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, OrderActivity.class);
             startActivity(intent);
         }); */
