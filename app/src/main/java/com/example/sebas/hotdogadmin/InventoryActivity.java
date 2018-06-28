@@ -162,46 +162,88 @@ public class InventoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                int mHotDogPrice = Integer.parseInt(mHotDogAdd.getText().toString());
-                int mBbqSaucePrice = Integer.parseInt(mBbqSauceAdd.getText().toString());
-                int mKetchupPrice = Integer.parseInt(mKetchupAdd.getText().toString());
-                int mMayonnaisePrice = Integer.parseInt(mMayonnaiseAdd.getText().toString());
-                int mCurryPrice = Integer.parseInt(mCurryAdd.getText().toString());
-                int mOnionPrice = Integer.parseInt(mOnionAdd.getText().toString());
-                int mCheesePrice = Integer.parseInt(mCheeseAdd.getText().toString());
+                updateStock();
 
-                InventoryItem InvItem = new InventoryItem();
-                InvItem.setHotdogStock(mHotDogPrice);
-                InvItem.setBbqSauceStock(mBbqSaucePrice);
-                InvItem.setKetchupStock(mKetchupPrice);
-                InvItem.setMayonnaiseStock(mMayonnaisePrice);
-                InvItem.setCurryStock(mCurryPrice);
-                InvItem.setOnionStock(mOnionPrice);
-                InvItem.setCheeseStock(mCheesePrice);
-                InvItem.setId("797f796d-5f19-45d1-852c-4142462f9420");
-
-                mInventoryTable.update(InvItem, new TableOperationCallback<InventoryItem>() {
-                    public static final String TAG = "TAG";
-
-                    @Override
-                    public void onCompleted(InventoryItem entity, Exception exception, ServiceFilterResponse response) {
-
-                                                if (exception == null){
-                            Log.i(TAG, "Azure insert succeeded ID: " + entity);
-                        } else {
-                            Log.i(TAG, "Azure insert failed again " + exception);
-                        }
-                    }
-
-
-                });
-                refreshStocksFromTable();
-
-                Toast.makeText(InventoryActivity.this,  "Vorräte wurden aktualisiert",
-                        Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    private void updateStock(){
+        @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
+            @Override
+            protected Void doInBackground(Void... params) {
+
+                try {
+
+                    int mHotDogPrice = Integer.parseInt(mHotDogAdd.getText().toString());
+                    int mBbqSaucePrice = Integer.parseInt(mBbqSauceAdd.getText().toString());
+                    int mKetchupPrice = Integer.parseInt(mKetchupAdd.getText().toString());
+                    int mMayonnaisePrice = Integer.parseInt(mMayonnaiseAdd.getText().toString());
+                    int mCurryPrice = Integer.parseInt(mCurryAdd.getText().toString());
+                    int mOnionPrice = Integer.parseInt(mOnionAdd.getText().toString());
+                    int mCheesePrice = Integer.parseInt(mCheeseAdd.getText().toString());
+
+                    InventoryItem result = mInventoryTable
+                            .lookUp("797f796d-5f19-45d1-852c-4142462f9420")
+
+                            .get();
+                    int mHotdogS = result.getHotdogStock();
+                    int mBbqS = result.getBbqStock();
+                    int mKetchupS = result.getKetchupStock();
+                    int mMayonnaiseS = result.getMayonnaiseStock();
+                    int mCurryS = result.getCurryStock();
+                    int mOnionS = result.getOnionStock();
+                    int mCheeseS = result.getCheeseStock();
+
+                    InventoryItem InvItem = new InventoryItem();
+                    InvItem.setHotdogStock(mHotDogPrice + mHotdogS);
+                    InvItem.setBbqSauceStock(mBbqSaucePrice + mBbqS);
+                    InvItem.setKetchupStock(mKetchupPrice + mKetchupS);
+                    InvItem.setMayonnaiseStock(mMayonnaisePrice + mMayonnaiseS);
+                    InvItem.setCurryStock(mCurryPrice + mCurryS);
+                    InvItem.setOnionStock(mOnionPrice + mOnionS);
+                    InvItem.setCheeseStock(mCheesePrice + mCheeseS);
+                    InvItem.setId("797f796d-5f19-45d1-852c-4142462f9420");
+
+                    mInventoryTable.update(InvItem, new TableOperationCallback<InventoryItem>() {
+                        public static final String TAG = "TAG";
+
+                        @Override
+                        public void onCompleted(InventoryItem entity, Exception exception, ServiceFilterResponse response) {
+
+                            if (exception == null){
+                                Log.i(TAG, "Azure insert succeeded ID: " + entity);
+                            } else {
+                                Log.i(TAG, "Azure insert failed again " + exception);
+                            }
+                        }
+
+
+                    });
+
+                    refreshStocksFromTable();
+
+                    runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                            Toast.makeText(InventoryActivity.this,  "Vorräte wurden aktualisiert",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } catch (Exception exception) {
+                    createAndShowDialog(exception, "Error");
+                }
+                return null;
+            }
+        };
+
+        runAsyncTask(task);
+    }
+
+
+
 
     private void refreshItemsFromTable() {
 
@@ -219,7 +261,7 @@ public class InventoryActivity extends AppCompatActivity{
                             .get();
                     mHotDogNo = resultHd.size();
                     System.out.println(resultHd.size());
-                    //mHotDogNo = resultHd.size();
+
 
                     List<HotDogItem> resultBs = mHotDogTable
                             .where()
@@ -293,6 +335,54 @@ public class InventoryActivity extends AppCompatActivity{
             protected Void doInBackground(Void... params) {
 
                 try {
+                    List<HotDogItem> resultHd = mHotDogTable
+                            .execute()
+                            .get();
+                    mHotDogNo = resultHd.size();
+                    System.out.println(resultHd.size());
+
+
+                    List<HotDogItem> resultBs = mHotDogTable
+                            .where()
+                            .field("bbqsauce").eq(true)
+                            .execute()
+                            .get();
+                    mBbqSauceNo = resultBs.size();
+
+                    List<HotDogItem> resultK = mHotDogTable
+                            .where()
+                            .field("ketchup").eq(true)
+                            .execute()
+                            .get();
+                    mKetchupNo = resultK.size();
+
+                    List<HotDogItem> resultM = mHotDogTable
+                            .where()
+                            .field("mayonnaise").eq(true)
+                            .execute()
+                            .get();
+                    mMayonnaiseNo = resultM.size();
+
+                    List<HotDogItem> resultC = mHotDogTable
+                            .where()
+                            .field("curry").eq(true)
+                            .execute()
+                            .get();
+                    mCurryNo = resultC.size();
+
+                    List<HotDogItem> resultO = mHotDogTable
+                            .where()
+                            .field("onion").eq(true)
+                            .execute()
+                            .get();
+                    mOnionNo = resultO.size();
+
+                    List<HotDogItem> resultCh = mHotDogTable
+                            .where()
+                            .field("cheese").eq(true)
+                            .execute()
+                            .get();
+                    mCheeseNo = resultCh.size();
 
                     InventoryItem result = mInventoryTable
                             .lookUp("797f796d-5f19-45d1-852c-4142462f9420")
@@ -303,13 +393,13 @@ public class InventoryActivity extends AppCompatActivity{
 
                         @Override
                         public void run() {
-                            mHotDogStock.setText(String.valueOf(result.getHotdogStock()));
-                            mBbqSauceStock.setText(String.valueOf(result.getBbqStock()));
-                            mKetchupStock.setText(String.valueOf(result.getKetchupStock()));
-                            mMayonnaiseStock.setText(String.valueOf(result.getMayonnaiseStock()));
-                            mCurryStock.setText(String.valueOf(result.getCurryStock()));
-                            mOnionStock.setText(String.valueOf(result.getOnionStock()));
-                            mCheeseStock.setText(String.valueOf(result.getCheeseStock()));
+                            mHotDogStock.setText(String.valueOf(result.getHotdogStock() - mHotDogNo ));
+                            mBbqSauceStock.setText(String.valueOf(result.getBbqStock() - mBbqSauceNo));
+                            mKetchupStock.setText(String.valueOf(result.getKetchupStock()- mKetchupNo ));
+                            mMayonnaiseStock.setText(String.valueOf(result.getMayonnaiseStock() - mMayonnaiseNo));
+                            mCurryStock.setText(String.valueOf(result.getCurryStock() - mCurryNo));
+                            mOnionStock.setText(String.valueOf(result.getOnionStock() - mOnionNo));
+                            mCheeseStock.setText(String.valueOf(result.getCheeseStock() + mCheeseNo));
                         }
                     });
                 } catch (Exception exception) {
