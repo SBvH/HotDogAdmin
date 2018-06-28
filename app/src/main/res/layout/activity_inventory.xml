@@ -101,7 +101,8 @@
             android:id="@+id/hotdog_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="z.B. 50"
+            android:paddingLeft="40dp"
+            android:text="0"
             android:fontFamily="sans-serif"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
@@ -140,7 +141,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 50"
+            android:paddingLeft="40dp"
+            android:text="0"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -177,7 +179,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 50"
+            android:paddingLeft="40dp"
+            android:text="0"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -215,7 +218,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 50"
+            android:paddingLeft="40dp"
+            android:text="0"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -256,7 +260,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 50"
+            android:paddingLeft="40dp"
+            android:text="0"
             android:textAppearance="?android:textAppearanceSmall" />
 
     </LinearLayout>
@@ -293,7 +298,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 50"
+            android:paddingLeft="40dp"
+            android:text="0"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 
@@ -332,7 +338,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:hint="z.B. 50"
+            android:paddingLeft="40dp"
+            android:text="0"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:textAppearanceSmall"/>
 

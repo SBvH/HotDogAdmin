@@ -30,4 +30,6 @@
     <string name="order_onion">Zwiebeln</string>
     <string name="order_cheese">Käse</string>
     <string name="order_delete">Bezahlt</string>
+    <string name="orig_prices">Aktuelle Preise</string>
+    <string name="update_prices">Neue Preise</string>
 </resources>

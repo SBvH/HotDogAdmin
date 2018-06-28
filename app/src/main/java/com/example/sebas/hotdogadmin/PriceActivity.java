@@ -203,6 +203,14 @@ public class PriceActivity extends Activity {
                             mCurryPrice.setHint(String.format("%.2f",result.getCurry())+ " €");
                             mOnionPrice.setHint(String.format("%.2f",result.getOnion())+ " €");
                             mCheesePrice.setHint(String.format("%.2f",result.getCheese())+ " €");
+
+                            mHotDogEditText.setText(String.valueOf(result.getHotDog()));
+                            mBbqSauceEditText.setText(String.valueOf(result.getBbqSauce()));
+                            mKetchupEditText.setText(String.valueOf(result.getKetchup()));
+                            mMayonnaiseEditText.setText(String.valueOf(result.getMayonnaise()));
+                            mCurryEditText.setText(String.valueOf(result.getCurry()));
+                            mOnionEditText.setText(String.valueOf(result.getOnion()));
+                            mCheeseEditText.setText(String.valueOf(result.getCheese()));
                         }
                     });
                 } catch (Exception exception) {
