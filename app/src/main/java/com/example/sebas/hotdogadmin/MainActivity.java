@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        /*mOrderButton.setOnClickListener(view -> {
+        mOrderButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, OrderActivity.class);
             startActivity(intent);
-        }); */
+        });
 
         mPricesButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, PriceActivity.class);

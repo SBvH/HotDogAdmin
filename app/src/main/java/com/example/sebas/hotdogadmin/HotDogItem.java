@@ -30,6 +30,9 @@ public class HotDogItem {
     @com.google.gson.annotations.SerializedName("totalprice")
     private double mTotalPrice;
 
+    @com.google.gson.annotations.SerializedName("complete")
+    private boolean mComplete;
+
     public HotDogItem() {
 
     }
@@ -110,6 +113,13 @@ public class HotDogItem {
     }
     public void setTotalPrice (double totalPrice) {
         this.mTotalPrice = totalPrice;
+    }
+
+    public boolean isComplete() {
+        return mComplete;
+    }
+    public void setComplete(boolean complete) {
+        mComplete = complete;
     }
 
     @Override

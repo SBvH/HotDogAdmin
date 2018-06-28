@@ -22,4 +22,12 @@
     <string name="add_ingredients">Hinzufügen</string>
     <string name="stock_warning">WICHTIG: Vor dem Aktualisieren der Vorräte sind alle Felder auszufüllen!</string>
     <string name="add_button_text">Vorräte aktualisieren</string>
+    <string name="order_number">Bestellnummer</string>
+    <string name="order_bbq">BBQ-Sauce</string>
+    <string name="order_ketchup">Ketchup</string>
+    <string name="order_mayonnaise">Mayonnaise</string>
+    <string name="order_curry">Curry</string>
+    <string name="order_onion">Zwiebeln</string>
+    <string name="order_cheese">Käse</string>
+    <string name="order_delete">Bezahlt</string>
 </resources>

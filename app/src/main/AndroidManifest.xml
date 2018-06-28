@@ -27,6 +27,11 @@
             android:theme="@style/EditorTheme"
             android:parentActivityName=".MainActivity" >
         </activity>
+        <activity
+            android:name=".OrderActivity"
+            android:theme="@style/EditorTheme"
+            android:parentActivityName=".MainActivity" >
+        </activity>
     </application>
 
 </manifest>

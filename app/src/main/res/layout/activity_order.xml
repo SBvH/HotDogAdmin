@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="28dp"
+        android:layout_height="28dp"/>
+
+
+    <ListView
+        android:id="@+id/listViewToDo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="6dip"
+        tools:listitem="@layout/row_list_to_do">
+
+    </ListView>
+
+</LinearLayout>
