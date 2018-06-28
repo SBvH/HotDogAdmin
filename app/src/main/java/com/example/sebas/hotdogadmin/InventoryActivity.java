@@ -393,20 +393,178 @@ public class InventoryActivity extends AppCompatActivity{
 
                         @Override
                         public void run() {
-                            mHotDogStock.setText(String.valueOf(result.getHotdogStock() - mHotDogNo ));
+                            mHotDogStock.setText(String.valueOf(result.getHotdogStock() - mHotDogNo));
                             mBbqSauceStock.setText(String.valueOf(result.getBbqStock() - mBbqSauceNo));
-                            mKetchupStock.setText(String.valueOf(result.getKetchupStock()- mKetchupNo ));
+                            mKetchupStock.setText(String.valueOf(result.getKetchupStock()- mKetchupNo));
                             mMayonnaiseStock.setText(String.valueOf(result.getMayonnaiseStock() - mMayonnaiseNo));
                             mCurryStock.setText(String.valueOf(result.getCurryStock() - mCurryNo));
                             mOnionStock.setText(String.valueOf(result.getOnionStock() - mOnionNo));
                             mCheeseStock.setText(String.valueOf(result.getCheeseStock() + mCheeseNo));
                         }
                     });
+
+                    int mHotdog = result.getHotdogStock() - mHotDogNo;
+                    int mBbqSauce = result.getBbqStock() - mBbqSauceNo;
+                    int mKetchup = result.getKetchupStock()- mKetchupNo;
+                    int mMayonnaise = result.getMayonnaiseStock() - mMayonnaiseNo;
+                    int mCurry = result.getCurryStock() - mCurryNo;
+                    int mOnion = result.getOnionStock() - mOnionNo;
+                    int mCheese = result.getCheeseStock() + mCheeseNo;
+
+                    if (mHotdog<30 ){
+                        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                        mailIntent.setType("text/plain");
+
+                        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                                "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
+                                "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
+                                "Ketchup: " + mKetchup + "\n" + "\n" +
+                                "Mayonnaise: " + mMayonnaise + "\n" + "\n" +
+                                "Curry: " + mCurry + "\n" + "\n" +
+                                "Zwiebeln: " + mOnion + "\n" + "\n" +
+                                "Käse: " + mCheese
+                        );
+
+                        try {
+                            startActivity(Intent.createChooser(mailIntent, "Vorräte kritisch... bitte benachrichtige den Lieferanten"));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if (mBbqSauce<30 ){
+                        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                        mailIntent.setType("text/plain");
+
+                        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                                "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
+                                "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
+                                "Ketchup: " + mKetchup + "\n" + "\n" +
+                                "Mayonnaise: " + mMayonnaise + "\n" + "\n" +
+                                "Curry: " + mCurry + "\n" + "\n" +
+                                "Zwiebeln: " + mOnion + "\n" + "\n" +
+                                "Käse: " + mCheese
+                        );
+
+                        try {
+                            startActivity(Intent.createChooser(mailIntent, "Vorräte kritisch... bitte benachrichtige den Lieferanten"));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if (mKetchup<30 ){
+                        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                        mailIntent.setType("text/plain");
+
+                        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                                "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
+                                "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
+                                "Ketchup: " + mKetchup + "\n" + "\n" +
+                                "Mayonnaise: " + mMayonnaise + "\n" + "\n" +
+                                "Curry: " + mCurry + "\n" + "\n" +
+                                "Zwiebeln: " + mOnion + "\n" + "\n" +
+                                "Käse: " + mCheese
+                        );
+
+                        try {
+                            startActivity(Intent.createChooser(mailIntent, "Vorräte kritisch... bitte benachrichtige den Lieferanten"));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if (mMayonnaise<30 ){
+                        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                        mailIntent.setType("text/plain");
+
+                        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                                "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
+                                "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
+                                "Ketchup: " + mKetchup + "\n" + "\n" +
+                                "Mayonnaise: " + mMayonnaise + "\n" + "\n" +
+                                "Curry: " + mCurry + "\n" + "\n" +
+                                "Zwiebeln: " + mOnion + "\n" + "\n" +
+                                "Käse: " + mCheese
+                        );
+
+                        try {
+                            startActivity(Intent.createChooser(mailIntent, "Vorräte kritisch... bitte benachrichtige den Lieferanten"));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if (mCurry<30 ){
+                        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                        mailIntent.setType("text/plain");
+
+                        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                                "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
+                                "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
+                                "Ketchup: " + mKetchup + "\n" + "\n" +
+                                "Mayonnaise: " + mMayonnaise + "\n" + "\n" +
+                                "Curry: " + mCurry + "\n" + "\n" +
+                                "Zwiebeln: " + mOnion + "\n" + "\n" +
+                                "Käse: " + mCheese
+                        );
+
+                        try {
+                            startActivity(Intent.createChooser(mailIntent, "Vorräte kritisch... bitte benachrichtige den Lieferanten"));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if (mOnion<30 ){
+                        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                        mailIntent.setType("text/plain");
+
+                        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                                "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
+                                "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
+                                "Ketchup: " + mKetchup + "\n" + "\n" +
+                                "Mayonnaise: " + mMayonnaise + "\n" + "\n" +
+                                "Curry: " + mCurry + "\n" + "\n" +
+                                "Zwiebeln: " + mOnion + "\n" + "\n" +
+                                "Käse: " + mCheese
+                        );
+
+                        try {
+                            startActivity(Intent.createChooser(mailIntent, "Vorräte kritisch... bitte benachrichtige den Lieferanten"));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if (mCheese<30 ){
+                        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                        mailIntent.setType("text/plain");
+
+                        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                                "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
+                                "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
+                                "Ketchup: " + mKetchup + "\n" + "\n" +
+                                "Mayonnaise: " + mMayonnaise + "\n" + "\n" +
+                                "Curry: " + mCurry + "\n" + "\n" +
+                                "Zwiebeln: " + mOnion + "\n" + "\n" +
+                                "Käse: " + mCheese
+                        );
+
+                        try {
+                            startActivity(Intent.createChooser(mailIntent, "Vorräte kritisch... bitte benachrichtige den Lieferanten"));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
                 } catch (Exception exception) {
                     createAndShowDialog(exception, "Error");
                 }
                 return null;
             }
+
         };
 
         runAsyncTask(task);
