@@ -63,7 +63,7 @@ public class HotDogItemAdapter extends ArrayAdapter<HotDogItem> {
         orderCurry.setText(String.valueOf(currentItem.isCurry()));
         orderOnion.setText(String.valueOf(currentItem.isOnion()));
         orderCheese.setText(String.valueOf(currentItem.isCheese()));
-        checkBox.setText(String.valueOf(currentItem.getTotalPrice() + " €"));
+        checkBox.setText(String.format("%.2f",currentItem.getTotalPrice()) + " €");
         checkBox.setChecked(false);
         checkBox.setEnabled(true);
 
