@@ -411,12 +411,12 @@ public class InventoryActivity extends AppCompatActivity{
                     int mOnion = result.getOnionStock() - mOnionNo;
                     int mCheese = result.getCheeseStock() + mCheeseNo;
 
-                    if (mHotdog<30 ){
+                    if (mHotdog<100 ){
                         Intent mailIntent = new Intent(Intent.ACTION_SEND);
                         mailIntent.setType("text/plain");
 
                         mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
-                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 100 Portionen belaufen" + "\n" +"\n" +
                                 "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
                                 "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
                                 "Ketchup: " + mKetchup + "\n" + "\n" +
@@ -432,12 +432,12 @@ public class InventoryActivity extends AppCompatActivity{
                             Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    if (mBbqSauce<30 ){
+                    if (mBbqSauce<100 ){
                         Intent mailIntent = new Intent(Intent.ACTION_SEND);
                         mailIntent.setType("text/plain");
 
                         mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
-                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 100 Portionen belaufen" + "\n" +"\n" +
                                 "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
                                 "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
                                 "Ketchup: " + mKetchup + "\n" + "\n" +
@@ -453,12 +453,12 @@ public class InventoryActivity extends AppCompatActivity{
                             Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    if (mKetchup<30 ){
+                    if (mKetchup<100 ){
                         Intent mailIntent = new Intent(Intent.ACTION_SEND);
                         mailIntent.setType("text/plain");
 
                         mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
-                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 100 Portionen belaufen" + "\n" +"\n" +
                                 "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
                                 "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
                                 "Ketchup: " + mKetchup + "\n" + "\n" +
@@ -474,12 +474,12 @@ public class InventoryActivity extends AppCompatActivity{
                             Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    if (mMayonnaise<30 ){
+                    if (mMayonnaise<100 ){
                         Intent mailIntent = new Intent(Intent.ACTION_SEND);
                         mailIntent.setType("text/plain");
 
                         mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
-                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 100 Portionen belaufen" + "\n" +"\n" +
                                 "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
                                 "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
                                 "Ketchup: " + mKetchup + "\n" + "\n" +
@@ -495,12 +495,12 @@ public class InventoryActivity extends AppCompatActivity{
                             Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    if (mCurry<30 ){
+                    if (mCurry<100 ){
                         Intent mailIntent = new Intent(Intent.ACTION_SEND);
                         mailIntent.setType("text/plain");
 
                         mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
-                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 100 Portionen belaufen" + "\n" +"\n" +
                                 "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
                                 "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
                                 "Ketchup: " + mKetchup + "\n" + "\n" +
@@ -516,12 +516,12 @@ public class InventoryActivity extends AppCompatActivity{
                             Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    if (mOnion<30 ){
+                    if (mOnion<100 ){
                         Intent mailIntent = new Intent(Intent.ACTION_SEND);
                         mailIntent.setType("text/plain");
 
                         mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
-                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 100 Portionen belaufen" + "\n" +"\n" +
                                 "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
                                 "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
                                 "Ketchup: " + mKetchup + "\n" + "\n" +
@@ -537,12 +537,12 @@ public class InventoryActivity extends AppCompatActivity{
                             Toast.makeText(InventoryActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    if (mCheese<30 ){
+                    if (mCheese<100 ){
                         Intent mailIntent = new Intent(Intent.ACTION_SEND);
                         mailIntent.setType("text/plain");
 
                         mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lieferbedarf");
-                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 200 Portionen belaufen" + "\n" +"\n" +
+                        mailIntent.putExtra(Intent.EXTRA_TEXT   , "Bitte liefern die unten aufgeführten Zutaten nach, bis diese sich wieder auf mindestens 100 Portionen belaufen" + "\n" +"\n" +
                                 "Wurst und Brot: " + mHotdog+ "\n" +"\n" +
                                 "BBQ-Sauce: " + mBbqSauce + "\n" +"\n" +
                                 "Ketchup: " + mKetchup + "\n" + "\n" +
