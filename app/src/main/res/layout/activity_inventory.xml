@@ -31,25 +31,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-        android:id="@+id/ingredients"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:paddingTop="16dp"
-        android:text="@string/ingredients"
-        android:textAppearance="?android:textAppearanceSmall"/>
-        <TextView
-            android:id="@+id/orig_ingredients"
-            android:paddingLeft="30dp"
-            android:layout_width="wrap_content"
+            android:id="@+id/ingredients"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:paddingTop="16dp"
-            android:text="@string/orig_ingredients"
-            android:textAppearance="?android:textAppearanceSmall"/>
+            android:text="@string/ingredients"
+            android:textAppearance="?android:textAppearanceSmall" />
+
         <TextView
-            android:paddingLeft="10dp"
+            android:id="@+id/orig_ingredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="0dp"
+            android:paddingTop="16dp"
+            android:text="@string/orig_ingredients"
+            android:textAppearance="?android:textAppearanceSmall" />
+        <TextView
+            android:paddingLeft="4dp"
             android:id="@+id/orders_ingredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,7 +61,8 @@
             android:text="@string/orders_ingredients"
             android:textAppearance="?android:textAppearanceSmall"/>
         <TextView
-            android:paddingLeft="10dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
             android:id="@+id/add_ingredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
