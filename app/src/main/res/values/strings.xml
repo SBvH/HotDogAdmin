@@ -19,7 +19,7 @@
     <string name="ingredients">Zutaten</string>
     <string name="orig_ingredients">Vorrat</string>
     <string name="orders_ingredients">Bestellt</string>
-    <string name="add_ingredients">Hinzufügen</string>
+    <string name="add_ingredients">Hinzufügen\u00A0</string>
     <string name="stock_warning">WICHTIG: Bitte überprüfe Deine Eingaben vor der Aktualisierung der Vorräte!</string>
     <string name="add_button_text">Vorräte aktualisieren</string>
     <string name="order_number">Bestellnummer</string>
