@@ -48,21 +48,40 @@ public class HotDogItemAdapter extends ArrayAdapter<HotDogItem> {
 
         row.setTag(currentItem);
         final TextView orderNumber = (TextView) row.findViewById(R.id.order_number_in);
-        final TextView orderBbq = (TextView) row.findViewById(R.id.order_bbq_in);
-        final TextView orderKetchup = (TextView) row.findViewById(R.id.order_ketchup_in);
-        final TextView orderMayonnaise = (TextView) row.findViewById(R.id.order_mayonnaise_in);
-        final TextView orderCurry = (TextView) row.findViewById(R.id.order_curry_in);
-        final TextView orderOnion = (TextView) row.findViewById(R.id.order_onion_in);
-        final TextView orderCheese = (TextView) row.findViewById(R.id.order_cheese_in);
+        final TextView orderBbq = (TextView) row.findViewById(R.id.order_bbq);
+        final TextView orderKetchup = (TextView) row.findViewById(R.id.order_ketchup);
+        final TextView orderMayonnaise = (TextView) row.findViewById(R.id.order_mayonnaise);
+        final TextView orderCurry = (TextView) row.findViewById(R.id.order_curry);
+        final TextView orderOnion = (TextView) row.findViewById(R.id.order_onion);
+        final TextView orderCheese = (TextView) row.findViewById(R.id.order_cheese);
         final CheckBox checkBox = (CheckBox) row.findViewById(R.id.paid_checkbox);
 
         orderNumber.setText(currentItem.getHotdog());
-        orderBbq.setText(String.valueOf(currentItem.isBbqSauce()));
-        orderKetchup.setText(String.valueOf(currentItem.isKetchup()));
-        orderMayonnaise.setText(String.valueOf(currentItem.isMayonnaise()));
-        orderCurry.setText(String.valueOf(currentItem.isCurry()));
-        orderOnion.setText(String.valueOf(currentItem.isOnion()));
-        orderCheese.setText(String.valueOf(currentItem.isCheese()));
+
+        if (currentItem.isBbqSauce()){
+        orderBbq.setVisibility(View.VISIBLE);
+        } else {orderBbq.setVisibility(View.INVISIBLE);}
+
+        if (currentItem.isKetchup()){
+            orderKetchup.setVisibility(View.VISIBLE);
+        } else {orderKetchup.setVisibility(View.INVISIBLE);}
+
+        if (currentItem.isMayonnaise()){
+            orderMayonnaise.setVisibility(View.VISIBLE);
+        } else {orderMayonnaise.setVisibility(View.INVISIBLE);}
+
+        if (currentItem.isCurry()){
+            orderCurry.setVisibility(View.VISIBLE);
+        } else {orderCurry.setVisibility(View.INVISIBLE);}
+
+        if (currentItem.isOnion()){
+            orderCheese.setVisibility(View.VISIBLE);
+        } else {orderCheese.setVisibility(View.INVISIBLE);}
+
+        if (currentItem.isCheese()){
+            orderOnion.setVisibility(View.VISIBLE);
+        } else {orderOnion.setVisibility(View.INVISIBLE);}
+
         checkBox.setText(String.format("%.2f",currentItem.getTotalPrice()) + " €");
         checkBox.setChecked(false);
         checkBox.setEnabled(true);

@@ -94,7 +94,7 @@ public class OrderActivity extends AppCompatActivity{
 
 
             // Create an adapter to bind the items with the view
-            mAdapter = new HotDogItemAdapter(this, R.layout.row_list_to_do);
+            mAdapter = new HotDogItemAdapter(this, R.layout.row_list_orders);
             ListView listViewHotDogItem = (ListView) findViewById(R.id.listViewToDo);
             listViewHotDogItem.setAdapter(mAdapter);
 

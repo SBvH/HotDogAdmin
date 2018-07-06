@@ -32,4 +32,5 @@
     <string name="order_delete">Bezahlt</string>
     <string name="orig_prices">Aktuelle Preise</string>
     <string name="update_prices">Neue Preise</string>
+    <string name="order_extras">Zusätzliche Zutaten</string>
 </resources>
