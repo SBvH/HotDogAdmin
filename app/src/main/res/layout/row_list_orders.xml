@@ -73,55 +73,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
-            android:id="@+id/order_curry"
+            android:id="@+id/order_extra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:padding="2dp"
-            android:text="@string/order_curry"
+            android:padding="8dp"
+            android:text="@string/order_extras"
             android:textAppearance="?android:textAppearanceSmall"/>
-        <TextView
-            android:id="@+id/order_onion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:padding="2dp"
-            android:text="@string/order_onion"
-            android:textAppearance="?android:textAppearanceSmall"/>
-        <TextView
-            android:id="@+id/order_cheese"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:padding="2dp"
-            android:text="@string/order_cheese"
-            android:textAppearance="?android:textAppearanceSmall"/>
-        <TextView
-            android:id="@+id/order_bbq"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:padding="2dp"
-            android:text="@string/order_bbq"
-            android:textAppearance="?android:textAppearanceSmall"/>
-        <TextView
-            android:id="@+id/order_ketchup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:padding="2dp"
-            android:text="@string/order_ketchup"
-            android:textAppearance="?android:textAppearanceSmall"/>
-        <TextView
-            android:id="@+id/order_mayonnaise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:paddingTop="2dp"
-            android:text="@string/order_mayonnaise"
-            android:textAppearance="?android:textAppearanceSmall"/>
-        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -136,6 +98,7 @@
             android:paddingTop="0dp"/>
 
     </LinearLayout>
+
 
 
 

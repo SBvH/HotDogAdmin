@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 /**
  * Adapter to bind a ToDoItem List to a view
@@ -55,32 +57,36 @@ public class HotDogItemAdapter extends ArrayAdapter<HotDogItem> {
         final TextView orderOnion = (TextView) row.findViewById(R.id.order_onion);
         final TextView orderCheese = (TextView) row.findViewById(R.id.order_cheese);
         final CheckBox checkBox = (CheckBox) row.findViewById(R.id.paid_checkbox);
+        final TextView orderExtras = (TextView) row.findViewById(R.id.order_extra);
+        ArrayList<String> wordArrayList = new ArrayList<String>();
 
         orderNumber.setText(currentItem.getHotdog());
 
         if (currentItem.isBbqSauce()){
-        orderBbq.setVisibility(View.VISIBLE);
-        } else {orderBbq.setVisibility(View.INVISIBLE);}
+            wordArrayList.add("BBQ-Sauce");
+        }
 
         if (currentItem.isKetchup()){
-            orderKetchup.setVisibility(View.VISIBLE);
-        } else {orderKetchup.setVisibility(View.INVISIBLE);}
+            wordArrayList.add("Ketchup");
+        }
 
         if (currentItem.isMayonnaise()){
-            orderMayonnaise.setVisibility(View.VISIBLE);
-        } else {orderMayonnaise.setVisibility(View.INVISIBLE);}
+            wordArrayList.add("Mayonnaise");
+        }
 
         if (currentItem.isCurry()){
-            orderCurry.setVisibility(View.VISIBLE);
-        } else {orderCurry.setVisibility(View.INVISIBLE);}
+            wordArrayList.add("Curry");
+        }
 
         if (currentItem.isOnion()){
-            orderCheese.setVisibility(View.VISIBLE);
-        } else {orderCheese.setVisibility(View.INVISIBLE);}
+            wordArrayList.add("Onion");
+        }
 
         if (currentItem.isCheese()){
-            orderOnion.setVisibility(View.VISIBLE);
-        } else {orderOnion.setVisibility(View.INVISIBLE);}
+            wordArrayList.add("Cheese");
+        }
+
+        orderExtras.setText(String.valueOf(wordArrayList));
 
         checkBox.setText(String.format("%.2f",currentItem.getTotalPrice()) + " €");
         checkBox.setChecked(false);
